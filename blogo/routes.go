@@ -61,7 +61,6 @@ func InitRoutes() *chi.Mux {
 
 	r.Get("/rss", HandleRssFeed)
 	r.Get("/atom", HandleAtomFeed)
-	r.Get("/json", HandleJsonFeed)
 
 	return r
 }

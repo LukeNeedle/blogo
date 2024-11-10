@@ -141,8 +141,3 @@ func HandleAtomFeed(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/atom+xml")
 	w.Write([]byte(AtomFeed()))
 }
-
-func HandleJsonFeed(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte(JsonFeed()))
-}

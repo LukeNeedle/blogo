@@ -12,7 +12,7 @@ Blogo is a light and easy blogging engine. No complicated extras, just a straigh
     - Github Flavored Markdown is supported.
     - Syntax Highlighting using [chroma](https://github.com/alecthomas/chroma)
     - YAML Metadata for posts info.
-- **Feeds**: RSS, Atom and JSON feeds!
+- **Feeds**: RSS and Atom feeds!
 - **Raw endpoint**: Add `/raw` to any article link to get the raw markdown!
 - **About page**: Easily create an About page so everyone can know more about you.
 - **Customizable**: You can fully customize the look and feel of your blog by editing the templates and CSS.
