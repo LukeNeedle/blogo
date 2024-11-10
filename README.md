@@ -1,14 +1,4 @@
-# 🎈 [Blogo](https://blogo.site)
-
 Blogo is a light and easy blogging engine. No complicated extras, just a straightforward blog. 
-
-Now, here's the twist: Blogo can also publish your posts to Nostr for backing them up and getting even more reach. **Lift your ideas higher!**
-
-## Some blogs using Blogo
-
-- [blogo.site](https://blogo.site)
-- [blog.kycnot.me](https://blog.kycnot.me)
-- [blog.kyun.host](https://blog.kyun.host)
 
 ## Features
 
@@ -27,9 +17,6 @@ Now, here's the twist: Blogo can also publish your posts to Nostr for backing th
 - **About page**: Easily create an About page so everyone can know more about you.
 - **Customizable**: You can fully customize the look and feel of your blog by editing the templates and CSS.
     - Uses Golang Templates, TailwindCSS and pure plain CSS.
-- **Nostr**: Publish your posts to Nostr for backing them up and getting more reach.
-    - Set your own key, or let Blogo generate one for you.
-    - Set your own relay list, or use the default list.
 - **Auto-reload**: When a new post is added, or changed, blogo automatically reloads it.
 - **SEO/SSNN Optimized** - Blogo is optimized for SEO, it contains all necessary meta tags and social sharing tags!
 - **No JS**: Blogo doesn't use any JavaScript, so it's widely compatible and secure.
@@ -59,11 +46,6 @@ services:
       BLOGO_URL: http://localhost:3000
       #BLOGO_ANALYTICS: '<script defer src="https://my.analytics.site/script.js"></script>'
       TIMEZONE: UTC
-
-      # NOSTR CONFIG
-      PUBLISH_TO_NOSTR: false
-      #NOSTR_NSEC: ""
-      #NOSTR_RELAYS: "wss://nostr-pub.wellorder.net,wss://relay.damus.io,wss://relay.nostr.band"
 ```
 
 2. Edit the `docker-compose.yml` file to fit your needs.
@@ -96,7 +78,6 @@ Here's a list of the available metadata fields:
 - `Date`: The date of the post. Must be in the format `YYYY-MM-DD HH:MM`.
 - `Draft`: Whether the post is a draft or not. Must be `true` or `false`.
 - `Layout`: The layout of the post. For now, only `post` is available.
-- `NostrUrl`: The url to the Nostr content. If set to `0` it will disable the posting of that article to Nostr even if Nostr publishing is enabled.
 
 ### About page
 
@@ -116,20 +97,6 @@ volumes:
 Then you can just use `/static/img/your-image.jpg` in the markdown to add an image.
 
 > The `/app/static` folder contains the css styles needed for styling Blogo. For this, it is recommended to always create subfolders with bind mounts inside.
-
-### Publish to Nostr
-
-If you set the `PUBLISH_TO_NOSTR` variable in the `docker-compose.yml` file to `true`, Blogo will publish your posts to Nostr. By default, Blogo will generate an ephemeral key (changes on every restart) and use a default relay list. 
-
-You can change either of these defaults by setting any of these variables in the `docker-compose.yml` file:
-
-- `NOSTR_NSEC` - expects a valid `nsec` key. If you set this key, your posts will be always published for the same key, even on restarts.
-    - You can generate a new Nostr key pair using `blogo -nkeys`.
-- `NOSTR_RELAY_LIST` - expects a comma-separated list of relays (with protocol); eg. `wss://relay1.com,wss://relay2.net`.
-
-> You can avoid publishing a particular post to Nostr by setting the `NostrUrl` metadata field in the post to `false` or `0`.
-
-> Posts are published to Nostr as [Long-Form events](https://github.com/nostr-protocol/nips/blob/master/23.md) following the definition in [NIP-33](https://github.com/nostr-protocol/nips/blob/master/33.md#referencing-and-tagging).
 
 ### Add analytics
 
