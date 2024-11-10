@@ -68,12 +68,6 @@
                 <span>{{dateString .Article.Date}}</span>
             {{end}}
         </div>
-        
-        {{if and (ne .Article.NostrUrl "") (ne .Article.NostrUrl "0") (ne .Article.NostrUrl "false")}}
-            <div class="pb-2 text-center">
-                <a class="text-xs font-bold text-blue-900 underline dark:text-blue-300" href="{{.Article.NostrUrl}}">Read on Nostr</a>
-            </div>
-        {{end}}
     </div>  
 </section>
 

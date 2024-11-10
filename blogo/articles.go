@@ -146,13 +146,6 @@ func LoadArticle(article ArticleData) (err error) {
 		Badger.Set("post_"+article.Slug, articleJson)
 	}
 
-	if article.NostrUrl == "" && article.Slug != "about" {
-		// Publish to Nostr
-		err = PublishArticleToNostr(article)
-		if err != nil {
-			log.Err(err).Msg("Error publishing article to Nostr")
-		}
-	}
 	return nil
 }
 
@@ -232,8 +225,7 @@ func GetArticleFromFile(filepath string) (ArticleData, error) {
 			Title:    GetMapStringValue(metadata, "Title"),
 			Author:   GetMapStringValue(metadata, "Author"),
 			Summary:  GetMapStringValue(metadata, "Summary"),
-			Layout:   GetMapStringValue(metadata, "Layout"),
-			NostrUrl: GetMapStringValue(metadata, "NostrUrl"),
+			Layout:   GetMapStringValue(metadata, "Layout")
 		}
 
 		if tags, ok := metadata["Tags"].([]interface{}); ok {

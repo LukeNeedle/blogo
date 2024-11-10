@@ -21,19 +21,8 @@ func main() {
 	dev := flag.Bool("dev", false, "sets dev mode")
 	new := flag.String("new", "", "Creates a new post file in articles/ with the name specified after the flag. Example: -new my-post")
 	path := flag.String("path", "", "Sets the path to the content folder. Example: -path /home/user/my-blog/articles")
-	nkeys := flag.Bool("nkeys", false, "Generates a new nostr key set.")
 	port := flag.Int("port", 3000, "Sets the port to run the server on. Example: -port 3000")
 	flag.Parse()
-
-	if *nkeys {
-		_, _, nsec, npub, err := GetNewKeySet()
-		if err != nil {
-			log.Error().Err(err).Msg("Error generating new key set:")
-			os.Exit(1)
-		}
-		log.Info().Msgf("Generated new Nostr key set:\n\nnsec: %v\nnpub: %v\n\n", nsec, npub)
-		os.Exit(0)
-	}
 
 	if *dev {
 		os.Setenv("DEV", "true")
@@ -86,13 +75,6 @@ func main() {
 	})
 
 	handler := c.Handler(r)
-
-	if os.Getenv("PUBLISH_TO_NOSTR") == "true" {
-		err = InitNostr()
-		if err != nil {
-			log.Error().Err(err).Msg("Error initializing nostr:")
-		}
-	}
 
 	err = LoadArticles()
 	if err != nil {

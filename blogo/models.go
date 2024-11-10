@@ -17,7 +17,6 @@ type ArticleData struct {
 	Layout   string
 	Md       string
 	Html     template.HTML
-	NostrUrl string
 }
 
 type Config struct {
