@@ -41,7 +41,7 @@ COPY static static
 COPY --from=node /app/static/css/style.css ./static/css/style.css
 
 # Ensure the app uses the right timezone by setting the TZ environment variable
-ENV TZ="Europe/Warsaw"
+ENV TZ="Europe/London"
 ENV PATH="/app:$PATH"
 
 EXPOSE 3000
